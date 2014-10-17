@@ -31,8 +31,8 @@ function addFila(datos) {
 
     var capa5 = "<td><a href='#' onclick='editar(this)' id='edit+"
         + datos.id + "' >Editar</a>" +
-        "<a href='#' onclick='borrar(this)' id='borrar+'"
-        + datos.id + ">Borrar</a>" +
+        "<a href='#' onclick='borrar(this)' id='borrar+"
+        + datos.id + "'>Borrar</a>" +
         "</td></tr>";
 
    
@@ -93,6 +93,25 @@ function guardarDatos() {
     $("#txtTitulo").val("");
     $("#txtPaginas").val("");
     $("#txtUnidades").val("");
+}
+
+function borrar(obj) {
+    var id = obj.getAttribute("id").split("+")[1];
+
+    var r = confirm("Estas seguro?");
+
+    if (r) {
+
+        $.ajax(url + "/" + id, {
+            method: "DELETE",
+            contentType: "application/json",
+            dataType: "json",
+            success: leerTodo
+        });
+
+
+    }
+
 }
 
 /*function editar(obj) {
