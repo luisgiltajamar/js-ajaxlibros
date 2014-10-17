@@ -1,4 +1,5 @@
 ﻿var url = "https://alumnos-mcsd2014.azure-mobile.net/tables/libros";
+//var apikey = "boLXIUgMZjyWajvxSMoKVJbqmZhluD68";
 function borrarTabla() {
     $("#datos").find("tr:gt(0)").remove();
 }
@@ -169,7 +170,15 @@ function crearTabla(datos) {
 
 function leerTodo() {
     
-    $.getJSON(url, crearTabla);
+    // $.getJSON(url, crearTabla);
+    //headers: {"X-ZUMO-APPLICATION":apikey}, Esto va dentro de la llamada ajax
+    $.ajax(url, {
+        method: "GET",
+        contentType: "application/json",
+        type: "json",
+        
+        success:crearTabla
+    });
 
 }
 
