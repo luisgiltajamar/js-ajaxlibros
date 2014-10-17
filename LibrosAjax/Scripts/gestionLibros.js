@@ -114,6 +114,32 @@ function borrar(obj) {
 
 }
 
+function buscar() {
+    var contenido = $("#txtBuscar").val();
+    var tipo = $("#ddlBuscar").val();
+    var urlFinal = url;
+
+    if (tipo == 2) {
+        urlFinal += "?$filter=substringof('"+contenido+"',isbn)";
+
+    }
+    if (tipo == 1) {
+        urlFinal += "?$filter=substringof('" + contenido + "',titulo)";
+
+    }
+    if (tipo == 3) {
+        urlFinal += "?$filter=paginas ge "+contenido;
+
+    }
+    if (tipo == 4) {
+        urlFinal += "?$filter=unidades ge " + contenido;
+
+    }
+
+    $.getJSON(urlFinal, crearTabla);
+}
+
+
 /*function editar(obj) {
     var fila = obj.parentNode.parentNode;
 
@@ -147,10 +173,34 @@ function leerTodo() {
 
 }
 
+function pintarCanvas(datos) {
+    var canvas = document.querySelector("#ventas");
+    var ctx = canvas.getContext("2d");
+    var estilos = ['italic 40pt Arial', 'italic 30pt Arial', 'italic 20pt Arial'];
+    var posY = 60;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (var i = 0; i < datos.length; i++) {
+        ctx.font = estilos[i];
+        
+        ctx.fillText(datos[i].titulo, 10, posY);
+        posY += 50;
+    }
+}
+
+function MasVendidos() {
+
+    var urlFinal = url + "?$top=3&$orderby=unidades desc";
+
+    $.getJSON(urlFinal, pintarCanvas);
+
+}
+
 $(document).ready(function() {
 
     leerTodo();
         $("#btnGuardar").click(guardarDatos);
-
+        $("#btnBuscar").click(buscar);
+        $("#btnVentas").click(MasVendidos);
     }
 );
