@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        
+        .formulario {
+            display: none;
+
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="txtBuscar" />
+    <select id="ddlBuscar">
+        <option value="1">Titulo</option>
+        <option value="2">Isbn</option>
+        <option value="3">Paginas</option>
+        <option value="4">Unidades</option>
+    </select>
+    <input type="button" value="Buscar" id="btnBuscar" />
+    <div id="edicion">
+        <input type="hidden" id="hdnEditando" value="-1" />
+        <input type="text" id="txtIsbn" /><br/>
+        <input type="text" id="txtTitulo" /><br />
+        <input type="text" id="txtPaginas" /><br />
+        <input type="text" id="txtUnidades" /><br />
+        <input type="button" id="btnGuardar"/>
+
+    </div>
+    <input type="button" id="btnAdd" value="Nuevo" />
+    <table id="datos">
+        <tr>
+            <th>ISBN</th>
+            <th>Titulo</th>
+            <th>Páginas</th>
+            <th>Unidades</th>
+        </tr>
+    </table>
+
+    <script src="Scripts/jquery-2.1.1.min.js"></script>
+   
+    <script src="Scripts/gestionLibros.js"></script>
+</body>
+</html>
